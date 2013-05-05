@@ -23,17 +23,26 @@
 	               			<input type="hidden" name="action" value="save"/>
 	                		<div class="field-group">
 		                		<label for="xslt-title">$action.getText("msg.title")</label>
-		                		<input class="text" id="xslt-title" type="text" name="title" value=""/>
+		                		<input class="text" id="xslt-title" type="text" name="xslt-title" value=""/>
 		                	</div>
 		                	<div class="field-group">
 		                		<label for="xslt-template">$action.getText("msg.xslt.template")</label>
-		                		<textarea class="textarea" id="xslt-template" name="template"></textarea>
+		                		<textarea class="textarea" id="xslt-template" name="xslt-template"></textarea>
 		                	</div>
 		                	<div class="field-group">
 		                		<input class="button" type="submit" value="$action.getText("msg.submit")"/>
 		                	</div>
                 		</form>
                 	</div>
+                	TODO...<br/>
+                	<b>$!xsltTemplates.size Templates</b>
+                	<br/>
+                	<ul>
+                		#foreach($tpl in $xsltTemplates)
+                		<li>$tpl.getTitle() ($tpl.getId()) / $tpl.getTemplate() <a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=delete&id=$tpl.getId()">X</a></li>
+                		#end
+                	</ul>
+                	<br/>
                 	<hr/>
                 	<div class="xslt-processor-info">
                 		<small>

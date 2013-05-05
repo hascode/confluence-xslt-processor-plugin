@@ -2,8 +2,7 @@ package com.hascode.plugin.confluence.xslt_processor.entity;
 
 import java.util.UUID;
 
-public class BasicXsltTemplate implements XsltTemplate,
-		Comparable<XsltTemplate> {
+public class BasicXsltTemplate implements XsltTemplate {
 	private String id;
 	private String title;
 	private String template;
@@ -49,8 +48,9 @@ public class BasicXsltTemplate implements XsltTemplate,
 	}
 
 	@Override
-	public int compareTo(final XsltTemplate o) {
-		return getTitle().compareTo(o.getTitle());
+	public String toString() {
+		return "BasicXsltTemplate [id=" + id + ", title=" + title
+				+ ", template=" + template + "]";
 	}
 
 	@Override
@@ -76,12 +76,6 @@ public class BasicXsltTemplate implements XsltTemplate,
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "BasicXsltTemplate [id=" + id + ", title=" + title
-				+ ", template=" + template + "]";
 	}
 
 }

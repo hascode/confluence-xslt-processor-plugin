@@ -26,8 +26,9 @@ public class BasicXsltTemplateProvider implements XsltTemplateProvider {
 	@Override
 	public void save(final XsltTemplate template) {
 		log.info("saving given xslt template: {}", template);
-		if (template == null || StringUtils.isEmpty(template.getTitle())) {
-			log.warn("template or template title is null");
+		if (template == null || template.getId() == null
+				|| StringUtils.isEmpty(template.getTitle())) {
+			log.warn("template, template title or template id is null");
 			throw new NullPointerException();
 		}
 		Map<String, XsltTemplate> templates = getTemplateMap();
