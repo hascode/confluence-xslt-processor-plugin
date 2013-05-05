@@ -1,0 +1,55 @@
+<html>
+        <head>
+                <meta name="decorator" content="atl.admin"/>
+                <title>$action.getText("msg.configuration")</title>
+        </head>
+        <body>
+			<style type="text/css">
+			.xslt-processor-content {
+			    border: 1px solid rgb(221, 221, 221);
+			    -moz-border-radius: 15px 15px 15px 15px;
+			    padding: 20px;
+			}
+			#xslt-processor-notification {
+				height:150px;
+				width:400px;
+			}
+			</style>
+        
+                <div class="xslt-processor-content">
+                	#parse("/template/includes/actionerrors.vm")
+                	<div class="xslt-processor-config">
+                		<form action="$req.getContextPath()/plugins/xsltprocess/admin/configure.action" method="post">
+                			<input type="hidden" name="action" value="save"/>
+	                		<table>
+	                			<tbody>
+	                				<tr>
+	                					<th>Title</th>
+	                					<td>
+	                						<input type="text" name="title" value=""/>
+	                					</td>
+	                				</tr>
+	                				<tr>
+	                					<th>XSLT Template</th>
+	                					<td>
+	                						<textarea name="template"></textarea>
+	                					</td>
+	                				</tr>
+	                				<tr>
+	                					<td colspan="2">
+	                						<input type="submit" value="$action.getText("msg.submit")"/>
+	                					</td>
+	                				</tr>
+	                			</tbody>
+	                		</table>
+                		</form>
+                	</div>
+                	<hr/>
+                	<div class="xslt-processor-info">
+                		<small>
+                			<a href="http://www.hascode.com">by hasCode.com</a>
+                		</small>
+                	</div>
+                </div>
+        </body>
+</html>

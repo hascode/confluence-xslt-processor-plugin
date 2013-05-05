@@ -1,32 +1,55 @@
-<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+	name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+		<param name="plugin-icon">images/pluginIcon.png</param>
+		<param name="plugin-logo">images/pluginLogo.png</param>
+	</plugin-info>
 
-    <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="xslt-processor-plugin"/>
-    
-    <!-- add our web resources -->
-    <web-resource key="xslt-processor-plugin-resources" name="xslt-processor-plugin Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
-        <resource type="download" name="xslt-processor-plugin.css" location="/css/xslt-processor-plugin.css"/>
-        <resource type="download" name="xslt-processor-plugin.js" location="/js/xslt-processor-plugin.js"/>
-        <resource type="download" name="images/" location="/images"/>
+	<!-- add our i18n resource -->
+	<resource type="i18n" name="i18n" location="xslt-processor-plugin" />
 
-        <context>xslt-processor-plugin</context>
-    </web-resource>
-    
-    <!-- publish our component -->
-    <component key="myPluginComponent" class="com.hascode.plugin.confluence.xslt_processor.MyPluginComponentImpl" public="true">
-        <interface>com.hascode.plugin.confluence.xslt_processor.MyPluginComponent</interface>
-    </component>
-    
-    <!-- import from the product container -->
-    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
-    
+	<!-- add our web resources -->
+	<web-resource key="xslt-processor-plugin-resources" name="xslt-processor-plugin Web Resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+
+		<resource type="download" name="xslt-processor-plugin.css"
+			location="/css/xslt-processor-plugin.css" />
+		<resource type="download" name="xslt-processor-plugin.js"
+			location="/js/xslt-processor-plugin.js" />
+		<resource type="download" name="images/" location="/images" />
+
+		<context>xslt-processor-plugin</context>
+	</web-resource>
+
+	<!-- import from the product container -->
+	<component-import key="applicationProperties"
+		interface="com.atlassian.sal.api.ApplicationProperties" />
+
+	<!-- XWORK ACTIONS -->
+	<xwork key="xsltplugin.component.xwork.adminpanel" i18n-name-key="xsltplugin.component.xwork.adminpanel">
+		<package name="xsltplugin" extends="default"
+			namespace="/plugins/xsltprocess/admin">
+			<default-interceptor-ref name="defaultStack" />
+			<action name="configure"
+				class="com.hascode.plugin.confluence.xslt_processor.action.ConfigureAction">
+				<result name="success" type="velocity">configuration.vm</result>
+				<result name="no-permission" type="velocity">no_permission.vm
+				</result>
+			</action>
+		</package>
+	</xwork>
+	<!-- /XWORK ACTIONS -->
+
+	<!-- WEB ITEMS -->
+	<web-item key="xsltplugin.component.webitem.configurelink"
+		i18n-name-key="xsltplugin.component.webitem.configurelink" section="system.admin/administration"
+		weight="200">
+		<label key="xsltplugin.component.webitem.configurelink.label" />
+		<link>/plugins/xsltprocess/admin/configure.action
+		</link>
+	</web-item>
+	<!-- /WEB ITEMS -->
 </atlassian-plugin>

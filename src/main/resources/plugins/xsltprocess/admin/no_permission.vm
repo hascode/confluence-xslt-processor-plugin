@@ -1,0 +1,30 @@
+<html>
+        <head>
+                <meta name="decorator" content="atl.admin"/>
+                <title>$action.getText("socialcomments.msg.no-permission")</title>
+        </head>
+        <body>
+        	<style type="text/css">
+			.xslt-processor-content {
+			    border: 1px solid rgb(221, 221, 221);
+			    -moz-border-radius: 15px 15px 15px 15px;
+			    padding: 20px;
+			}
+			#xslt-processor-notification {
+				height:150px;
+				width:400px;
+			}
+			</style>
+            <h1>$action.getText("msg.no-permission")</h1>
+            <div class="socialcomments-content">
+            	$action.getText("msg.no-permission.description")
+            	<br/>
+    			<hr/>
+            	<div class="xslt-processor-info">
+            		<small>
+            			<a href="http://www.hascode.com">by hasCode.com</a>
+            		</small>
+            	</div>
+            </div>
+        </body>
+</html>
