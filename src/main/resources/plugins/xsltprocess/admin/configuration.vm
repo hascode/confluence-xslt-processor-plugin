@@ -19,29 +19,19 @@
                 <div class="xslt-processor-content">
                 	#parse("/template/includes/actionerrors.vm")
                 	<div class="xslt-processor-config">
-                		<form action="$req.getContextPath()/plugins/xsltprocess/admin/configure.action" method="post">
-                			<input type="hidden" name="action" value="save"/>
-	                		<table>
-	                			<tbody>
-	                				<tr>
-	                					<th>Title</th>
-	                					<td>
-	                						<input type="text" name="title" value=""/>
-	                					</td>
-	                				</tr>
-	                				<tr>
-	                					<th>XSLT Template</th>
-	                					<td>
-	                						<textarea name="template"></textarea>
-	                					</td>
-	                				</tr>
-	                				<tr>
-	                					<td colspan="2">
-	                						<input type="submit" value="$action.getText("msg.submit")"/>
-	                					</td>
-	                				</tr>
-	                			</tbody>
-	                		</table>
+                		<form action="$req.getContextPath()/plugins/xsltprocess/admin/configure.action" method="post" class="aui">
+	               			<input type="hidden" name="action" value="save"/>
+	                		<div class="field-group">
+		                		<label for="xslt-title">Title</label>
+		                		<input class="text" id="xslt-title" type="text" name="title" value=""/>
+		                	</div>
+		                	<div class="field-group">
+		                		<label for="xslt-template">XSLT Template</label>
+		                		<textarea class="textarea" id="xslt-template" name="template"></textarea>
+		                	</div>
+		                	<div class="field-group">
+		                		<input class="button" type="submit" value="$action.getText("msg.submit")"/>
+		                	</div>
                 		</form>
                 	</div>
                 	<hr/>
