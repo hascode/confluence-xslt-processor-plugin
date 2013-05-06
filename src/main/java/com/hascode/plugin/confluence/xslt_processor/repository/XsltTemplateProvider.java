@@ -13,4 +13,6 @@ public interface XsltTemplateProvider {
 	void remove(String id);
 
 	Optional<XsltTemplate> getById(final String id);
+
+	Optional<XsltTemplate> getByTitle(final String title);
 }
