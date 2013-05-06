@@ -2,17 +2,28 @@ package com.hascode.plugin.confluence.xslt_processor.entity;
 
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class BasicXsltTemplate implements XsltTemplate {
 	private String id;
 	private String title;
 	private String template;
 
 	public BasicXsltTemplate() {
-		ensureId();
+
+	}
+
+	public BasicXsltTemplate(final String id) {
+		if (StringUtils.isEmpty(id)) {
+			ensureId();
+		} else {
+			this.id = id;
+		}
+
 	}
 
 	private void ensureId() {
-		if (getId() == null) {
+		if (StringUtils.isEmpty(getId())) {
 			this.id = UUID.randomUUID().toString();
 		}
 	}

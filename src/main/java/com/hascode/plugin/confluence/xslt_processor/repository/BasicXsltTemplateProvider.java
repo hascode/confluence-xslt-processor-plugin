@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.atlassian.bandana.BandanaManager;
 import com.atlassian.confluence.setup.bandana.ConfluenceBandanaContext;
+import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.hascode.plugin.confluence.xslt_processor.entity.XsltTemplate;
 
@@ -62,6 +63,15 @@ public class BasicXsltTemplateProvider implements XsltTemplateProvider {
 			bandanaManager.setValue(ConfluenceBandanaContext.GLOBAL_CONTEXT,
 					KEY, templates);
 		}
+	}
+
+	@Override
+	public Optional<XsltTemplate> getById(final String id) {
+		log.info("fetching template for given id: {}", id);
+		Map<String, XsltTemplate> templates = getTemplateMap();
+		if (!templates.containsKey(id))
+			return Optional.absent();
+		return Optional.of(templates.get(id));
 	}
 
 }

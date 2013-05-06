@@ -15,38 +15,54 @@
 				width:400px;
 			}
 			</style>
+			<script>
+			var formUrl = '$req.getContextPath()/plugins/xsltprocess/admin/configure.action';
+			</script>
         		#requireResource("com.atlassian.auiplugin:aui-experimental-badge")
+        		#requireResource("com.atlassian.auiplugin:aui-experimental-iconfont")
                 <div class="xslt-processor-content">
                 	#parse("/template/includes/actionerrors.vm")
                 	<div class="xslt-processor-config">
                 		<form action="$req.getContextPath()/plugins/xsltprocess/admin/configure.action" method="post" class="aui">
 	               			<input type="hidden" name="action" value="save"/>
+	               			<input type="hidden" name="xslt-id" value="$!templateEdited.getId()"/>
 	                		<div class="field-group">
 		                		<label for="xslt-title">$action.getText("msg.title")</label>
-		                		<input class="text" id="xslt-title" type="text" name="xslt-title" value=""/>
+		                		<input class="text" id="xslt-title" type="text" name="xslt-title" value="$!templateEdited.getTitle()"/>
 		                	</div>
 		                	<div class="field-group">
 		                		<label for="xslt-template">$action.getText("msg.xslt.template")</label>
-		                		<textarea class="textarea" id="xslt-template" name="xslt-template"></textarea>
+		                		<textarea class="textarea" id="xslt-template" name="xslt-template">$!templateEdited.getTemplate()</textarea>
 		                	</div>
 		                	<div class="field-group">
 		                		<input class="button" type="submit" value="$action.getText("msg.submit")"/>
+		                		<input class="button" type="button" value="$action.getText("msg.refresh")" onclick="window.location=formUrl"/>
 		                	</div>
                 		</form>
                 	</div>
                 	<hr/>
-                	<b>Existing XSLT Templates</b> <span class="aui-badge">$xsltTemplates.size()</span>
+                	<b>$action.getText("msg.templates.existing")</b> <span class="aui-badge">$xsltTemplates.size()</span>
                 	<br/>
-                	<ul>
+                	<table>
                 		#foreach($tpl in $xsltTemplates)
-                		<li>$tpl.getTitle() ($tpl.getId()) / $tpl.getTemplate() <a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=delete&id=$tpl.getId()">X</a></li>
+                		<tr>
+                			<td>
+                				<span>$tpl.getTitle()</span>
+                			</td>
+                			<td>
+	                			<span class="aui-badge"><a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=edit&id=$tpl.getId()">edit</a></span>
+	                		</td>
+	                		<td>
+	                			<span class="aui-badge"><a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=delete&id=$tpl.getId()">delete</a></span>
+	                		</td>
+	                	</tr>
                 		#end
-                	</ul>
+                	</table>
                 	<br/>
                 	<hr/>
                 	<div class="xslt-processor-info">
                 		<small>
-                			<a href="http://www.hascode.com">by hasCode.com</a>
+                			<a href="http://www.hascode.com/">by hasCode.com</a>
                 		</small>
                 	</div>
                 </div>
