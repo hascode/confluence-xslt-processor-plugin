@@ -15,7 +15,7 @@
 				width:400px;
 			}
 			</style>
-        
+        		#requireResource("com.atlassian.auiplugin:aui-experimental-badge")
                 <div class="xslt-processor-content">
                 	#parse("/template/includes/actionerrors.vm")
                 	<div class="xslt-processor-config">
@@ -34,8 +34,8 @@
 		                	</div>
                 		</form>
                 	</div>
-                	TODO...<br/>
-                	<b>$!xsltTemplates.size Templates</b>
+                	<hr/>
+                	<b>Existing XSLT Templates</b> <span class="aui-badge">$xsltTemplates.size()</span>
                 	<br/>
                 	<ul>
                 		#foreach($tpl in $xsltTemplates)

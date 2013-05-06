@@ -58,8 +58,7 @@ public class BasicXsltTemplateProvider implements XsltTemplateProvider {
 		Map<String, XsltTemplate> templates = getTemplateMap();
 		if (templates.containsKey(id)) {
 			log.debug("template found for given id: {}", id);
-			XsltTemplate template = templates.get(id);
-			templates.remove(template);
+			templates.remove(id);
 			bandanaManager.setValue(ConfluenceBandanaContext.GLOBAL_CONTEXT,
 					KEY, templates);
 		}

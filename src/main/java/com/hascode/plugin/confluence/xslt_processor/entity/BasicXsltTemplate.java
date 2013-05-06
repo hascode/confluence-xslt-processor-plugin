@@ -19,7 +19,7 @@ public class BasicXsltTemplate implements XsltTemplate {
 
 	@Override
 	public final String getId() {
-		return id;
+		return this.id;
 	}
 
 	@Override
