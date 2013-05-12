@@ -59,6 +59,7 @@ public class ConfigureAction extends ConfluenceActionSupport {
 	private void removeTemplate() {
 		final String id = param(PARAM_ID);
 		xsltTemplateProvider.remove(id);
+		addActionMessage("msg.remove.success", new Object[] {});
 	}
 
 	private void saveTemplate() {
@@ -73,6 +74,7 @@ public class ConfigureAction extends ConfluenceActionSupport {
 		xsltTemplate.setTitle(title);
 		xsltTemplate.setTemplate(template);
 		xsltTemplateProvider.save(xsltTemplate);
+		addActionMessage("msg.save.success", new Object[] {});
 	}
 
 	private String param(final String key) {
