@@ -12,8 +12,8 @@ import com.atlassian.bandana.BandanaManager;
 import com.atlassian.confluence.setup.bandana.ConfluenceBandanaContext;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.hascode.plugin.confluence.xslt_processor.entity.XsltTemplate;
 
 public class BasicXsltTemplateProvider implements XsltTemplateProvider {
@@ -77,13 +77,13 @@ public class BasicXsltTemplateProvider implements XsltTemplateProvider {
 	}
 
 	@Override
-	// TODO:
 	public Optional<XsltTemplate> getByTitle(final String title) {
 		log.info("fetching template for given title: {}", title);
 		Map<String, XsltTemplate> templates = getTemplateMap();
 		Predicate<XsltTemplate> byTitle = new XsltTitlePredicate(title);
-		Map<String, XsltTemplate> found = Maps.filterValues(templates, byTitle);
-		return Optional.absent();
+		XsltTemplate found = Iterables.find(templates.values(), byTitle);
+		if (found == null)
+			return Optional.absent();
+		return Optional.of(found);
 	}
-
 }
