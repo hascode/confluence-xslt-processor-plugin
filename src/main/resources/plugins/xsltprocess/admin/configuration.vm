@@ -14,6 +14,9 @@
 				height:150px;
 				width:400px;
 			}
+			.xslt-processor-content .url-suffix {
+			font-size:11px;background-color:#fff;border:1px dashed #666;width:340px;padding:2px;background-color:#ddd";
+			}
 			</style>
 			<script>
 			var formUrl = '$req.getContextPath()/plugins/xsltprocess/admin/configure.action';
@@ -43,17 +46,20 @@
                 	<hr/>
                 	<b>$action.getText("msg.templates.existing")</b> <span class="aui-badge">$xsltTemplates.size()</span>
                 	<br/>
-                	<table>
+                	<table class="aui">
                 		#foreach($tpl in $xsltTemplates)
                 		<tr>
                 			<td>
-                				<span>$tpl.getTitle()</span>
+                				<a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=edit&id=$tpl.getId()">$tpl.getTitle()</a>
                 			</td>
                 			<td>
 	                			<span class="aui-badge"><a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=edit&id=$tpl.getId()">edit</a></span>
 	                		</td>
 	                		<td>
 	                			<span class="aui-badge"><a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=delete&id=$tpl.getId()">delete</a></span>
+	                		</td>
+	                		<td>
+	                			<span class="aui-badge">$action.getText("msg.url.suffix"):</span> <input type="text" class="text url-suffix" readonly="true" value="?xsltransform=$tpl.getId()"/>
 	                		</td>
 	                	</tr>
                 		#end
