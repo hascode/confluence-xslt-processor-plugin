@@ -15,12 +15,13 @@ import com.atlassian.confluence.pages.PageManager;
 import com.google.common.base.Optional;
 import com.hascode.plugin.confluence.xslt_processor.entity.XsltTemplate;
 import com.hascode.plugin.confluence.xslt_processor.repository.XsltTemplateProvider;
+import com.hascode.plugin.confluence.xslt_processor.transformer.XsltPageTransformer;
 
 public class XsltTransformerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory
 			.getLogger(XsltTransformerServlet.class);
-
+	private static final XsltPageTransformer transformer = new XsltPageTransformer();
 	private final XsltTemplateProvider xsltTemplateProvider;
 	private final PageManager pageManager;
 
@@ -59,10 +60,17 @@ public class XsltTransformerServlet extends HttpServlet {
 			return;
 		}
 
+		printTransformationResult(res, template, ceo);
+	}
+
+	private void printTransformationResult(final HttpServletResponse res,
+			final Optional<XsltTemplate> template, final ContentEntityObject ceo)
+			throws IOException {
 		final XsltTemplate xslt = template.get();
 		final String content = ceo.getBodyAsString();
 		log.info("transforming given content: {} with xsl template: {}",
 				content, xslt);
+		res.getWriter().append(transformer.transform(content, xslt));
 	}
 
 	private Optional<XsltTemplate> findTemplate(
