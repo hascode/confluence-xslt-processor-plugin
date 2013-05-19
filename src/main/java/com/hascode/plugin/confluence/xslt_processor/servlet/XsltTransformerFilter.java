@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,8 @@ public class XsltTransformerFilter implements Filter {
 				XsltTemplate xslt = tpl.get();
 				log.info("found a template for given id: {}. template: {}",
 						templateId, xslt.toString());
+				log.info("applying xsl template to request body: {}",
+						IOUtils.toString(req.getReader()));
 			}
 		}
 		chain.doFilter(req, res);

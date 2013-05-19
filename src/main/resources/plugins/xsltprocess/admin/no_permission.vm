@@ -1,7 +1,7 @@
 <html>
         <head>
-                <meta name="decorator" content="atl.admin"/>
-                <title>$action.getText("socialcomments.msg.no-permission")</title>
+                <meta name="decorator" content="atl.general"/>
+                <title>$action.getText("msg.no-permission")</title>
         </head>
         <body>
         	<style type="text/css">
@@ -15,7 +15,6 @@
 				width:400px;
 			}
 			</style>
-            <h1>$action.getText("msg.no-permission")</h1>
             <div class="socialcomments-content">
             	$action.getText("msg.no-permission.description")
             	<br/>
