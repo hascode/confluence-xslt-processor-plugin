@@ -15,7 +15,7 @@
 				width:400px;
 			}
 			.xslt-processor-content .url-suffix {
-			font-size:11px;background-color:#fff;border:1px dashed #666;width:340px;padding:2px;background-color:#ddd;margin-left:20px;
+			font-size:11px;background-color:#fff;border:1px dashed #666;width:540px;padding:2px;background-color:#ddd;margin-left:20px;
 			}
 			</style>
 			<script>
@@ -23,6 +23,7 @@
 			</script>
         		#requireResource("com.atlassian.auiplugin:aui-experimental-badge")
         		#requireResource("com.atlassian.auiplugin:aui-experimental-iconfont")
+        		#set($baseUrl = $settingsManager.getGlobalSettings().getBaseUrl())
                 <div class="xslt-processor-content">
                 	#parse("/template/includes/actionerrors.vm")
                 	<div class="xslt-processor-config">
@@ -59,7 +60,7 @@
 	                			<span class="aui-badge"><a href="$req.getContextPath()/plugins/xsltprocess/admin/configure.action?action=delete&id=$tpl.getId()">delete</a></span>
 	                		</td>
 	                		<td>
-	                			<span class="aui-badge">$action.getText("msg.url.suffix"):</span> <input type="text" class="text url-suffix" readonly="true" value="?xsltransform=$tpl.getId()"/>
+	                			<span class="aui-badge">$action.getText("msg.url.suffix"):</span> <input type="text" class="text url-suffix" readonly="true" value="$baseUrl/plugins/servlet/xslt-transform?tpl=$tpl.getId()&pageId=INSERT-ID"/>
 	                		</td>
 	                	</tr>
                 		#end

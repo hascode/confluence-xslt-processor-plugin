@@ -58,14 +58,13 @@
 		</link>
 	</web-item>
 	<!-- /WEB ITEMS -->
-	
-	<!-- SERVLET FILTER -->
-	 <servlet-filter name="XSLT Transformer Servlet Filter"
-	key="xsltTransformFilter"
-	class="com.hascode.plugin.confluence.xslt_processor.servlet.XsltTransformerFilter"
-	location="before-dispatch" weight="200">
-        <description>XSLT Transformer Servlet Filter.</description>
-        <url-pattern>/display/*</url-pattern>
-    </servlet-filter>
-    <!-- /SERVLET FILTER -->
+
+	<!-- SERVLET -->
+	<servlet name="XSLT Transformer Servlet" key="xsltTransformerServlet"
+		class="com.hascode.plugin.confluence.xslt_processor.servlet.XsltTransformerServlet">
+		<description>Transforms a page for a given page id and xslt template
+			id.</description>
+		<url-pattern>/xslt-transform</url-pattern>
+	</servlet>
+	<!-- /SERVLET -->
 </atlassian-plugin>
