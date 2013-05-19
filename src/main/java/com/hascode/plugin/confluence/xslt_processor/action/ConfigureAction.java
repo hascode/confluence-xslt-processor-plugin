@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.atlassian.confluence.core.ConfluenceActionSupport;
+import com.atlassian.user.User;
 import com.google.common.base.Optional;
 import com.hascode.plugin.confluence.xslt_processor.entity.BasicXsltTemplate;
 import com.hascode.plugin.confluence.xslt_processor.entity.XsltTemplate;
@@ -14,6 +15,7 @@ import com.hascode.plugin.confluence.xslt_processor.repository.XsltTemplateProvi
 import com.opensymphony.webwork.ServletActionContext;
 
 public class ConfigureAction extends ConfluenceActionSupport {
+	private static final String RESULT_NO_PERMISSION = "no-permission";
 	private static final String PARAM_EDIT_ID = "xslt-id";
 	private static final String PARAM_ID = "id";
 	private static final String PARAM_TEMPLATE = "xslt-template";
@@ -31,6 +33,18 @@ public class ConfigureAction extends ConfluenceActionSupport {
 
 	@Override
 	public String execute() {
+		if (!userIsAdministrator())
+			return RESULT_NO_PERMISSION;
+		return handleActions();
+	}
+
+	private boolean userIsAdministrator() {
+		User user = getRemoteUser();
+		return (user != null && permissionManager
+				.isConfluenceAdministrator(user));
+	}
+
+	private String handleActions() {
 		final String action = param(PARAM_ACTION);
 		if ("save".equals(action)) {
 			log.debug("saving a new template");
