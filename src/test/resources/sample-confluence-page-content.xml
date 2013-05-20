@@ -1,0 +1,83 @@
+<ac:macro ac:name="section">
+	<ac:rich-text-body>
+		<ac:macro ac:name="column">
+			<ac:parameter ac:name="width">60%</ac:parameter>
+			<ac:rich-text-body>
+				<p>This tutorial will help you get started with Confluence:</p>
+				<ac:macro ac:name="children">
+					<ac:parameter ac:name="style">h5</ac:parameter>
+				</ac:macro>
+				<p>
+					<br class="atl-forced-newline" />
+					<br class="atl-forced-newline" />
+					<ac:link>
+						<ri:page ri:content-title="Using the Dashboard" />
+						<ac:link-body>
+							<ac:image>
+								<ri:attachment ri:filename="btn_next.png">
+									<ri:page ri:content-title="_Images" />
+								</ri:attachment>
+							</ac:image>
+						</ac:link-body>
+					</ac:link>
+				</p>
+			</ac:rich-text-body>
+		</ac:macro>
+		<ac:macro ac:name="column">
+			<ac:rich-text-body>
+				<ac:macro ac:name="info">
+					<ac:parameter ac:name="icon">false</ac:parameter>
+					<ac:rich-text-body>
+						<p>
+							<strong>What is a space?</strong>
+							<br />
+							A space is an area within Confluence, containing your wiki pages.
+							You can think of each space as a sub-site, or mini-site, each
+							with its own home page.
+						</p>
+						<p>
+							<strong>What is the Dashboard?</strong>
+							<br />
+							The Dashboard is the home page of your Confluence wiki. The
+							Dashboard contains a list of all the spaces within your wiki, as
+							well as a list of recently updated content.
+						</p>
+						<p>
+							<strong>What is a wiki?</strong>
+							<br />
+							A wiki is a piece of software that allows you and your colleagues
+							to create and edit web pages quickly and simply. Just click, edit
+							and save. Content is published immediately.
+						</p>
+						<p>
+							<strong>What is Confluence?</strong>
+							<br />
+							Confluence is an enterprise wiki with some extra communication
+							tools, including blog posts and RSS feeds.
+						</p>
+						<p>
+							<strong>What makes Confluence an enterprise wiki?</strong>
+							<br />
+							Different organisations use Confluence for different purposes: as
+							a company intranet, corporate website, project workspace,
+							knowledge base, documentation site and a host of other
+							implementations. All these are made possible by Confluence's
+							enterprise-appropriate features, including: security permissions
+							at the page, space and site level; content structuring and
+							restructuring options; LDAP compatibility and more.
+						</p>
+						<p>
+							<ac:emoticon ac:name="tick" />
+							If you prefer, read the tutorial
+							<ac:link>
+								<ri:page ri:content-title="Tutorial (all on one page)" />
+								<ac:plain-text-link-body><![CDATA[on one page]]></ac:plain-text-link-body>
+							</ac:link>
+							.
+						</p>
+					</ac:rich-text-body>
+				</ac:macro>
+			</ac:rich-text-body>
+		</ac:macro>
+	</ac:rich-text-body>
+</ac:macro>

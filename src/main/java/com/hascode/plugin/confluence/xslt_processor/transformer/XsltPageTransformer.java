@@ -17,10 +17,11 @@ public class XsltPageTransformer {
 	private static final TransformerFactory factory = TransformerFactory
 			.newInstance();
 	private static final String DTD = "<!DOCTYPE doctypeName [<!ENTITY nbsp \"&#160;\">]>";
+	private static final String WRAPPER = "<wrapper xmlns:ac=\"http://atlassian.com\" xmlns:ri=\"http://atlassian2.com\">%s</wrapper>";
 
 	public String transform(final String pageContent,
 			final XsltTemplate template) {
-		final String content = DTD + pageContent;
+		final String content = String.format(WRAPPER, pageContent);
 		Source xslt = new StreamSource(new StringReader(template.getTemplate()));
 		Transformer transformer;
 		try {
