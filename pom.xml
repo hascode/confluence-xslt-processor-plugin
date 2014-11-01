@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.hascode.plugin.confluence</groupId>
 	<artifactId>xslt-processor-plugin</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<organization>
 		<name>hasCode.com</name>
 		<url>http://www.hascode.com/</url>
@@ -88,9 +88,9 @@
 		</plugins>
 	</build>
 	<properties>
-		<confluence.version>5.1.2</confluence.version>
-		<confluence.data.version>5.1.2</confluence.data.version>
-		<amps.version>4.1.7</amps.version>
+		<confluence.version>5.6.4</confluence.version>
+		<confluence.data.version>5.6.0</confluence.data.version>
+		<amps.version>5.0.4</amps.version>
 		<plugin.testrunner.version>1.1</plugin.testrunner.version>
 	</properties>
 </project>
